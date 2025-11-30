@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>OMGAI - Fractional CISO & Cloud Security Leadership</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #021534;
+      --bg-alt: #061b3f;
+      --gold: #f2c14f;
+      --text: #f5f7fb;
+      --muted: #a9b3d1;
+      --accent: #1f7ae0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #06235c 0, var(--bg) 45%, #000714 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    .page {
+      max-width: 1080px;
+      width: 100%;
+      background: linear-gradient(145deg, #020b22, #041633);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(255, 255, 255, 0.02);
+      padding: 32px 24px 40px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .brand-title {
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--gold);
+    }
+
+    .brand-sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .lang-toggle {
+      display: flex;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 999px;
+      padding: 4px;
+    }
+
+    .lang-btn {
+      border: none;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      background: transparent;
+      color: var(--muted);
+      transition: all 0.18s ease;
+    }
+
+    .lang-btn.active {
+      background: var(--gold);
+      color: #101010;
+      font-weight: 600;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 32px;
+    }
+
+    @media (max-width: 860px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.7rem;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: clamp(1.9rem, 3vw, 2.4rem);
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    .hero-sub {
+      color: var(--muted);
+      font-size: 0.94rem;
+      margin-bottom: 16px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(242, 193, 79, 0.5);
+      color: var(--gold);
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #101010;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid rgba(242, 193, 79, 0.7);
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .pill {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, #0a2a64 0, #020b1e 60%);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portrait {
+      width: 110px;
+      height: 110px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 3px solid rgba(242, 193, 79, 0.9);
+      margin-bottom: 10px;
+      background: #0b1733;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .name {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 2px;
+    }
+
+    .title {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .badge {
+      font-size: 0.7rem;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(6, 35, 94, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text);
+    }
+
+    .section {
+      margin-top: 26px;
+    }
+
+    .section-title {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .section h2 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .cols-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 20px;
+    }
+
+    @media (max-width: 720px) {
+      .cols-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .list {
+      list-style: none;
+      display: grid;
+      gap: 6px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .list li::before {
+      content: "•";
+      color: var(--gold);
+      margin-right: 6px;
+    }
+
+    .stripe {
+      margin-top: 22px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .stripe span strong {
+      color: var(--gold);
+    }
+
+    .never-settle {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .lang-es {
+      display: none;
+    }
+
+    .show-es .lang-es {
+      display: block;
+    }
+
+    .show-es .lang-en {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="page" id="page">
+    <header>
+      <div class="brand">
+        <div class="brand-title">OMGAI</div>
+        <div class="brand-sub">Fractional CISO & Cloud Security Leadership</div>
+      </div>
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- LEFT COLUMN -->
+      <section>
+        <!-- ENGLISH HERO -->
+        <div class="lang-en">
+          <div class="hero-eyebrow">Fractional CISO · Cloud · Risk · Compliance</div>
+          <h1>Enterprise-level cybersecurity for growing businesses in Miami and beyond.</h1>
+          <p class="hero-sub">
+            I help business owners protect their systems, data, and reputation by acting as a
+            <span class="pill">Fractional CISO</span> — without the cost of a full-time executive.
+          </p>
+        </div>
+
+        <!-- SPANISH HERO -->
+        <div class="lang-es">
+          <div class="hero-eyebrow">Fractional CISO · Nube · Riesgo · Cumplimiento</div>
+          <h1>Ciberseguridad de nivel empresarial para compañías en crecimiento.</h1>
+          <p class="hero-sub">
+            Acompaño a dueños y directivos como
+            <span class="pill">CISO fraccional</span>, para proteger sistemas, datos y reputación
+            sin el costo de un ejecutivo de tiempo completo.
+          </p>
+        </div>
+
+        <div class="hero-tags">
+          <span class="tag">Microsoft &amp; Azure Security</span>
+          <span class="tag">Identity &amp; Access Management</span>
+          <span class="tag">Compliance &amp; Governance</span>
+          <span class="tag">Executive Cybersecurity Strategy</span>
+        </div>
+
+        <div class="hero-cta">
+          <a href="mailto:omg-ai@outlook.com?subject=OMGAI%20Fractional%20CISO%20Consultation"
+             class="btn btn-primary">
+            Book a Free Security Consultation
+          </a>
+          <a href="mailto:omg-ai@outlook.com" class="btn btn-outline">
+            Request OMGAI Service Overview (PDF)
+          </a>
+        </div>
+
+        <p class="hero-note lang-en">
+          Ideal for small and mid-size businesses that handle sensitive data, operate in the cloud,
+          or need guidance aligning with NIST / ISO / SOC 2 / HIPAA / PCI.
+        </p>
+        <p class="hero-note lang-es">
+          Ideal para pymes que manejan datos sensibles, trabajan en la nube o necesitan alinearse con
+          marcos como NIST, ISO, SOC 2, HIPAA o PCI sin montar un departamento interno de seguridad.
+        </p>
+
+        <div class="section">
+          <div class="section-title lang-en">Services</div>
+          <div class="section-title lang-es">Servicios</div>
+
+          <h2 class="lang-en">What I do as your Fractional CISO</h2>
+          <h2 class="lang-es">Lo que hago como tu CISO fraccional</h2>
+
+          <div class="cols-2">
+            <ul class="list lang-en">
+              <li>Security assessments & risk roadmaps</li>
+              <li>Microsoft / Windows / Azure security hardening</li>
+              <li>Firewall & network security advisory</li>
+              <li>Security policies, standards, and procedures</li>
+              <li>Identity & access management (IAM)</li>
+              <li>Incident response and playbooks</li>
+            </ul>
+
+            <ul class="list lang-es">
+              <li>Evaluaciones de seguridad y hojas de ruta de riesgo</li>
+              <li>Endurecimiento de seguridad en Microsoft, Windows y Azure</li>
+              <li>Asesoría en firewalls y seguridad de red</li>
+              <li>Políticas, estándares y procedimientos de seguridad</li>
+              <li>Gestión de identidades y accesos (IAM)</li>
+              <li>Planes y guías de respuesta a incidentes</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title lang-en">Engagement Models</div>
+          <div class="section-title lang-es">Modelos de servicio</div>
+
+          <h2 class="lang-en">Simple monthly packages</h2>
+          <h2 class="lang-es">Paquetes mensuales sencillos</h2>
+
+          <div class="cols-2">
+            <ul class="list">
+              <li><strong>Starter – from $1,500/mo:</strong> baseline assessment, roadmap, monthly check-in.</li>
+              <li><strong>Growth – from $2,500/mo:</strong> ongoing guidance, policy development, risk reviews.</li>
+              <li><strong>Executive – from $4,000/mo:</strong> full Fractional CISO engagement with board-level reporting.</li>
+            </ul>
+            <ul class="list lang-es">
+              <li><strong>Starter – desde $1,500/mes:</strong> evaluación base, hoja de ruta y reunión mensual.</li>
+              <li><strong>Growth – desde $2,500/mes:</strong> acompañamiento continuo, políticas y revisión de riesgos.</li>
+              <li><strong>Executive – desde $4,000/mes:</strong> rol CISO fraccional completo con reportes ejecutivos.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT COLUMN -->
+      <aside>
+        <div class="card">
+          <div class="portrait">
+            <!-- Reemplaza la ruta por tu foto cuando la tengas subida -->
+            <span>Your photo here</span>
+          </div>
+          <div class="name">Mauricio “Mao” Guzmán</div>
+          <div class="title lang-en">Fractional CISO · Cybersecurity & Cloud Program Leader</div>
+          <div class="title lang-es">CISO Fraccional · Líder en Ciberseguridad y Nube</div>
+
+          <div class="badge-row">
+            <span class="badge">Microsoft / Azure Security</span>
+            <span class="badge">Windows &amp; Windows Server</span>
+            <span class="badge">IAM &amp; Access Management</span>
+            <span class="badge">Firewalls &amp; Network Security</span>
+            <span class="badge">Risk · Compliance · Strategy</span>
+          </div>
+
+          <p class="hero-note lang-en">
+            Based in Miami Beach and serving businesses across South Florida and remote clients.
+          </p>
+          <p class="hero-note lang-es">
+            Con base en Miami Beach, atendiendo empresas en el Sur de la Florida y clientes remotos.
+          </p>
+
+          <div class="section">
+            <div class="section-title lang-en">Who I work with</div>
+            <div class="section-title lang-es">Con quién trabajo</div>
+
+            <ul class="list lang-en">
+              <li>Real estate, finance, and professional services</li>
+              <li>Healthcare clinics and medical practices</li>
+              <li>Growing SaaS and tech-enabled businesses</li>
+              <li>Owners that need security leadership without hiring a full-time CISO</li>
+            </ul>
+            <ul class="list lang-es">
+              <li>Real estate, finanzas y servicios profesionales</li>
+              <li>Clínicas y prácticas médicas</li>
+              <li>Empresas SaaS y negocios impulsados por tecnología</li>
+              <li>Dueños que necesitan liderazgo en seguridad sin contratar un CISO full-time</li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <div class="stripe">
+      <span class="lang-en">
+        Ready to reduce cyber risk and protect your business?
+        <strong>Email: omg-ai@outlook.com</strong>
+      </span>
+      <span class="lang-es">
+        ¿Listo para reducir riesgo y proteger tu negocio?
+        <strong>Email: omg-ai@outlook.com</strong>
+      </span>
+      <span class="never-settle">Never Settle.</span>
+    </div>
+  </div>
+
+  <script>
+    const page = document.getElementById("page");
+    const buttons = document.querySelectorAll(".lang-btn");
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        buttons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        if (btn.dataset.lang === "es") {
+          page.classList.add("show-es");
+        } else {
+          page.classList.remove("show-es");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
